@@ -10,7 +10,7 @@ function firebaseController($scope, $firebase) {
   test = $scope.testList;
 
   $scope.addToFire = function() {
-    $scope.testList.$set($scope.addInput);
+    $scope.testList.$add($scope.addInput);
     $scope.addInput = '';
   };
 

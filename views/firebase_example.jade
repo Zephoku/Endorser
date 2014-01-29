@@ -1,0 +1,24 @@
+extends layout
+
+block links
+  link(rel='stylesheet', href='/css/firebase_example.css')
+
+block scripts
+  script(src="/js/firebase_example.js")
+
+block content
+  div(ng-app='firebaseApp')
+    div.row(ng-controller="firebaseController")
+      div.fire-form
+        div.col-md-4
+          form(ng-submit="addToFire()")
+            label Add to Firebase
+              input(type='text', ng-model="addInput")
+              input(type='submit')
+
+      ul.fire-list
+        li(ng-repeat="value in testList" )
+          {{value}}
+
+      
+    

@@ -1,10 +1,14 @@
-function GitHubUI() {
-	this._github = new Firefeed("https://endorser.firebaseio.com/github");
-}
+var __github_ui;
+$(function() {
+  __github_ui = new GitHubUI();
+});
 
-GitHubUI.prototype._renderLoad = function(e) {
+function GitHubUI() {
+	this._github = new LoginGitHub("https://endorser.firebaseio.com/github");
+	var self = this;
 	var loginButton = $("#login-button");
 	loginButton.click(function(e) {
-    	self._firefeed.login('github');
+		alert( "Handler for .click() called." );
+    	self._github.login('github');
  	});
-};
+}

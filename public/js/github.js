@@ -57,12 +57,12 @@ function LoginGitHub(baseURL, newContext){
         baseURL, newContext || false ? new Firebase.Context() : null
     );
     this._firebaseAuthClient = new FirebaseSimpleLogin(this._firebase, function(error, user) {
-        self._firebaseAuthClient.login('github', {
-            rememberMe: true,
-            scope: 'user,public_repo'
-        });  
         self._onLoginStateChange(error, user);
     });
+    this._firebaseAuthClient.login('github', {
+	    rememberMe: true,
+	    scope: 'user,public_repo'
+	});
 }
 LoginGitHub.prototype = {
     _validateCallback: function(cb, notInit) {

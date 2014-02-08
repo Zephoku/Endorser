@@ -22,23 +22,17 @@ function LoginGitHub(baseURL, newContext){
         baseURL, newContext || false ? new Firebase.Context() : null
     );
     this._firebaseAuthClient = new FirebaseSimpleLogin(this._firebase, function(error, user) {
-        if (error) {
-            alert(error);
-        }
-        else if (user) {
-            alert('User login: ' + user.username + ', Provider: ' + user.provider);
-            var options = {
-                host: 'api.github.com',
-                port: 80,
-                path: '/'+ user.login + '/repos',
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            };
-            var result;
-            this.getJSON(options, result);
-            console.log(result); 
+        self._onLoginStateChange(error, user);
+    });
+    this._firebaseAuthClient.login('github', {
+	    rememberMe: true,
+	    scope: 'user,public_repo'
+	});
+}
+LoginGitHub.prototype = {
+    _validateCallback: function(cb, notInit) {
+        if (!cb || typeof cb != "function") {
+            throw new Error("Invalid onComplete callback provided");
         }
         else {
             //logged out

@@ -1,5 +1,11 @@
 extends layout
 
+block scripts
+  script(src="/js/github.js")
+  script(src="/js/githubUI.js")
+  script(src="/js/jquery-1.11.0.js")
+
 block content
   h1= title
   p Welcome to #{title}
+  a#login-button(href="#") Connect to GitHub

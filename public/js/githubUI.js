@@ -1,6 +1,6 @@
 var __github_ui;
 $(function() {
-  __github_ui = new GitHubUI();
+     __github_ui = new GitHubUI();
 });
 
 function GitHubUI() {

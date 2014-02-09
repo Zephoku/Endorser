@@ -7,6 +7,7 @@ var routes = require('./routes');
 var fireRoute = require('./routes/fire');
 var githubRoute = require('./routes/github');
 var http = require('http');
+var https = require('https');
 var path = require('path');
 var sass = require('node-sass');
 var app = express();

@@ -1,5 +1,3 @@
-var http = require("http");
-var https = require("https");
 /*
  * The LoginGitHub object provides functions to login a user, log them out, and  * read their repo info.
  * @param	{string}	baseURL		The Firebase URL
@@ -23,11 +21,15 @@ function LoginGitHub(baseURL, newContext){
     );
     this._firebaseAuthClient = new FirebaseSimpleLogin(this._firebase, function(error, user) {
         self._onLoginStateChange(error, user);
+        get
     });
-    this._firebaseAuthClient.login('github', {
-	    rememberMe: true,
-	    scope: 'user,public_repo'
-	});
+
+    this.login = function(provider){
+        this._firebaseAuthClient.login(provider, {
+        rememberMe: false,
+        scope: 'user,public_repo'   
+        });
+    };
 }
 LoginGitHub.prototype = {
     _validateCallback: function(cb, notInit) {
@@ -37,7 +39,29 @@ LoginGitHub.prototype = {
         else {
             //logged out
         }
-    });
+    },
+    _onLoginStateChange: function(error, user) {
+        var self = this;
+        if (error) {
+            console.log(error);
+        } else if (user) {
+            alert("Hello " + user.login +"!");
+            var options = {
+                host: 'api.github.com',
+                port: 80,
+                path: '/'+ user.login + '/repos',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            var result;
+            self.getJSON(options, result);
+            console.log(result); 
+        } else {
+            //logout
+        }
+    }
 }
 
 /**
@@ -71,11 +95,4 @@ LoginGitHub.prototype.getJSON = function(options, onResult){
         });
 
         req.end();
-}
-LoginGitHub.prototype.login = function(provider) {
-    var self = this;
-    self._firebaseAuthClient.login(provider, {
-        rememberMe: false,
-        scope: 'user,public_repo'   
-    });
 }

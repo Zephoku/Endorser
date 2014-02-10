@@ -8,6 +8,7 @@ function GitHubUI() {
 	var self = this;
 	var loginButton = $("#login-button");
 	loginButton.click(function(e) {
+		alert( "Handler for .click() called." );
     	self._github.login('github');
  	});
 }

@@ -1,0 +1,78 @@
+.navbar {
+  margin: auto;
+  text-align: center;
+}
+
+.container {
+  width: 1000px;
+}
+
+.namebar {
+  background-color: #3C3C3C;
+  margin: auto;
+  height: 165px;
+  width: 100%;
+}
+.namebar-container {
+  padding: 30px;
+  width: 1000px;
+}
+
+.content {
+  min-height: 300px;
+  height: 100%;
+  background-color: #A2A2A2;
+}
+
+.search-module{ 
+  overflow: hidden;
+  margin: auto;
+  width: 1000px;
+ }
+
+.searchpanel {
+  float: left;
+  width: 300px;
+  min-height: 200px;
+  margin: 10px;
+  background-color: #fff;
+}
+
+.searchcontent {
+  float: right;
+  width: 660px;
+  min-height: 300px;
+  max-height: 800px;
+  margin: 10px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.clear {
+  clear: both;
+}
+
+.connectbuttons {
+  float: right;
+}
+
+.name {
+  font-size: 36px;
+  padding-left: 50px;
+  line-height: 94px;
+  color: #fff;
+}
+
+.achievementlist {
+  list-style-type: none;
+}
+
+.achievement {
+  display: inline-block;
+  vertical-align:bottom;
+  width: 280px;
+  height: 80px;
+  -webkit-box-shadow: 0 2px 4px 1px #000;
+  box-shadow: 0 2px 4px 1px #000;
+  margin: 15px;
+}

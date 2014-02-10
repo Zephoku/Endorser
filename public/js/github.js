@@ -121,7 +121,7 @@ LoginGitHub.prototype.getJSON = function(user, onResult){
         } // end outputPageContent()
       } // end else statement
     }); // end requestJSON Ajax call
-
+}
 function pushToFirebase(json) {
     var messageListRef = new Firebase('https://endorser.firebaseio.com/achievements');
     var newMessageRef = messageListRef.push();

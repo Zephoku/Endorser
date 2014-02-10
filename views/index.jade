@@ -1,12 +1,42 @@
-extends layout
+extends layout  
+
+block links
+  link(rel='stylesheet', href='/css/index.css')
 
 block scripts
+  script(src='/js/search.js')
   script(src="/js/github.js")
   script(src="/js/githubUI.js")
   script(src="/js/jquery.js")
 
 block content
-  h1= title
-  p Welcome to #{title}
-  a#login-button(href="#") Connect to GitHub
-  div#ghapidata
+  div.content
+    nav.navbar.navbar-default
+      div.container
+        div.navbar-header
+          a.navbar-brand(href="#") Endorser
+    div.namebar
+      div.namebar.namebar-container
+        img.profleicon(src='/img/profile.png',width='100', height='100')
+        span.name Anthony Endergame
+        div.connectbuttons
+          button Connect with Khan Academy
+          button#login-button Connect with Github
+      div.clear
+    div.content(ng-app='search-module')
+      div.search-module(ng-controller='searchCTRL')
+        div.searchpanel
+          label.narrowdown Narrow Down
+            input(type='text', ng-model='q')
+        div.searchcontent
+          ul.achievementlist
+            li.achievement(ng-repeat="achieve in achievements | filter:q")
+              {{achieve.name}}
+              br
+              {{achieve.subtext}}
+              br
+              {{achieve.source}}
+        div.clear
+        
+  // h1= title
+  //- p Welcome to #{title}

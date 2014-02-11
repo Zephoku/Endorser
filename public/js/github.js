@@ -63,10 +63,9 @@ LoginGitHub.prototype.getJSON = function(user, onResult){
     var username = user.login;
     var requri   = 'https://api.github.com/users/'+username;
     var repouri  = 'https://api.github.com/users/'+username+'/repos';
-    $('#ghapidata').html('<div id="loader"></div>');
     requestJSON(requri, function(json) {
         if(json.message == "Not Found" || username == '') {
-            $('#ghapidata').html("<h2>No User Info Found</h2>");
+            console.log("NO USER FOUND!");
         }
         else {
             // else we have a user and we display their info
@@ -79,15 +78,12 @@ LoginGitHub.prototype.getJSON = function(user, onResult){
             var followingNum = json.following;
             var reposNum     = json.public_repos;
             var stargazerNum = 0;
-            var languageMap = new Object();
+            var languageMap = {};
+            var bestLanguage;
+            var maxReposForLanguage = 0;
 
             if(fullname == undefined) { fullname = username; }
-        
-            var outputHTML = '<h2>'+fullname+' <span class="smallname">(@<a href="'+profileURL+'" target="_blank">'+username+'</a>)</span></h2>';
-            outputHTML = outputHTML + '<div class="ghcontent"><div class="avi"><a href="'+profileURL+'" target="_blank"><img src="'+aviurl+'" width="80" height="80" alt="'+username+'"></a></div>';
-            outputHTML = outputHTML + '<p>Followers: '+followersNum+' - Following: '+followingNum+'<br>Repos: '+reposNum+'</p></div>';
-            outputHTML = outputHTML + '<div class="repolist clearfix">';
-            
+          
             var repositories;
             $.getJSON(repouri, function(json){
               repositories = json;   
@@ -98,15 +94,21 @@ LoginGitHub.prototype.getJSON = function(user, onResult){
         function outputPageContent() {
           if(repositories.length == 0) { outputHTML = outputHTML + '<p>No repos!</p></div>'; }
           else {
-            outputHTML = outputHTML + '<p><strong>Repos List:</strong></p> <ul>';
-
             $.each(repositories, function(index) {
                 stargazerNum = stargazerNum + repositories[index].stargazers_count;
-                outputHTML = outputHTML + '<li><a href="'+repositories[index].html_url+'" target="_blank">'+repositories[index].name + '</a></li>';
+                if(languageMap[repositories[index].language]) {
+                    languageMap[repositories[index].language]++;
+                } else {
+                    languageMap[repositories[index].language] = 1;
+                }
             });
-            outputHTML = outputHTML + '</ul></div>'; 
-            outputHTML = outputHTML + '<p>Stargazeers you have:</p>';
-            outputHTML = outputHTML + '' + stargazerNum;
+
+            for(var key in languageMap) {
+                if(languageMap[key] > maxReposForLanguage) {
+                    maxReposForLanguage = languageMap[key];
+                    bestLanguage = key;
+                }
+            }
 
             var popularitySubText = json.name + " has " + json.followers + " followers.";
             var popularityAchievements = {'name': 'GitHub Popularity', 'subtext': popularitySubText, 'image': "", 'priority': 0, 'source': 'github'};
@@ -116,8 +118,10 @@ LoginGitHub.prototype.getJSON = function(user, onResult){
             var starAchievements = {'name': 'Starry Developer', 'subtext': starSubText, 'image': "", 'priority': 0, 'source': 'github'};
             pushToFirebase(starAchievements);
 
+            var bestLangSubText = json.name + "'s best language is " + bestLanguage +".";
+            var languageAchievements = {'name': 'Best Language', 'subtext': bestLangSubText, 'image': "", 'priority': 0, 'source': 'github'};
+            pushToFirebase(languageAchievements);
           }
-          $('#ghapidata').html(outputHTML);
         } // end outputPageContent()
       } // end else statement
     }); // end requestJSON Ajax call

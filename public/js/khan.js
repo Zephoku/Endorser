@@ -40,7 +40,7 @@ function LoginKhan(baseURL, newContext) {
 	var result;
 	console.log(url);
 	self.getJSON(url, result);
-	//console.log(result);
+	console.log(result);
 
 }
 LoginKhan.prototype = {

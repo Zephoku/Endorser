@@ -8,6 +8,11 @@ block scripts
   script(src="/js/github.js")
   script(src="/js/githubUI.js")
   script(src="/js/jquery.js")
+  script(src="/js/sha1.js")
+  script(src="/js/oauth.js")
+  script(src="/js/khan.js")
+  script(src="/js/KhanUI.js")
+
 
 block content
   div.content
@@ -20,7 +25,7 @@ block content
         img.profleicon(src='/img/profile.png',width='100', height='100')
         span.name Anthony Endergame
         div.connectbuttons
-          button Connect with Khan Academy
+          button#login-button-k Connect with Khan Academy
           button#login-button Connect with Github
       div.clear
     div.content(ng-app='search-module')

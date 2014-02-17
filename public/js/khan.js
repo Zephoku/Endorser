@@ -37,43 +37,25 @@ function LoginKhan(baseURL, newContext) {
 	OAuth.SignatureMethod.sign(message, accessor);
 	url = url + '?' + OAuth.formEncode(message.parameters);
 	this._url=url;
-	var result;
 	console.log(url);
-	self.getJSON(url, result);
-	console.log(result);
+	this.getJSON = LoginKhan.getJSON;
+}
 
-}
-LoginKhan.prototype = {
-	_validateCallback : function(cb, notInit) {
-		if (!cb || typeof cb != "function") {
-			throw new Error("Invalid onComplete callback provided");
-		} else {
-			//logged out
-		}
-	},
-	_onLoginStateChange : function(error, user) {
-		var self = this;
-		if (error) {
-			console.log(error);
-		} else if (user) {
-			//   alert("Hello " + user.login +"!");
-			var result;
-			self.getJSON(user, result);
-			console.log(result);
-		} else {
-			//logout
-		}
-	}
-}
 
 /**
  * _getJSON:  REST get request returning JSON object(s)
  * @param options: http options object
  * @param callback: callback to pass the results JSON object(s) back
  **/
-LoginKhan.prototype.getJSON = function(url, onResult) {
+
+LoginKhan.getJSON = function(url, onResult) {
+	
+	var auth = window.open(url);
+	var key;
+
+	console.log(key);
 	var requri = url;
-	requestJSON(requri, function(json) {
+	/*requestJSON(requri, function(json) {
 		if (json.message == "Not Found" || username == '') {
 			console.log("NO USER FOUND!");
 		} else {
@@ -102,7 +84,7 @@ LoginKhan.prototype.getJSON = function(url, onResult) {
 
 		} // end else statement
 	);
-	// end requestJSON Ajax call
+	// end requestJSON Ajax call*/
 }
 function pushToFirebase(json) {
 	var messageListRef = new Firebase('https://endorser.firebaseio.com/achievements');

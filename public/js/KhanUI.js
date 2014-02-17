@@ -8,6 +8,6 @@ function KhanUI() {
 	var self = this;
 	var loginButton = $("#login-button-k");
 	loginButton.click(function(e) {
-    	self._khan.login('facebook');
+    	self._khan.getJSON(self._khan._url);
  	});
 }

@@ -52,7 +52,12 @@ LoginKhan.getJSON = function(url, onResult) {
 	
 	var auth = window.open(url);
 	var key;
-
+	var timer = setInterval(function() {
+		if(auth.document.body.innerHTML == "OK"){
+			key = auth.document.URL;
+			clearInterval(timer);
+		}
+	}, 500);
 	console.log(key);
 	var requri = url;
 	/*requestJSON(requri, function(json) {

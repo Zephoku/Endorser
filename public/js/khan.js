@@ -18,7 +18,8 @@ function LoginKhan(baseURL, newContext) {
 
 	this._firebase = new Firebase(baseURL, newContext || false ? new Firebase.Context() : null);
 
-	var url = "http://www.khanacademy.org/api/auth/request_token";
+	var url = "http://www.khanacademy.org/api/auth/request_token?oauth_callback=http://localhost:3000&"; /*local host*/
+	//var url = "http://www.khanacademy.org/api/auth/request_token?oauth_callback=http://endorse130.herokuapp.com&" /*heroku*/
 	var accessor = {
 		token : null,
 		tokenSecret : null,
@@ -35,7 +36,8 @@ function LoginKhan(baseURL, newContext) {
 
 	OAuth.completeRequest(message, accessor);
 	OAuth.SignatureMethod.sign(message, accessor);
-	url = url + '?' + OAuth.formEncode(message.parameters);
+	url = url  + OAuth.formEncode(message.parameters);
+
 	this._url=url;
 	console.log(url);
 	this.getJSON = LoginKhan.getJSON;
@@ -50,14 +52,16 @@ function LoginKhan(baseURL, newContext) {
 
 LoginKhan.getJSON = function(url, onResult) {
 	
-	var auth = window.open(url);
+	auth=window.open(url,'Login','height=600,width=900');
+	if (window.focus) {auth.focus()}
 	var key;
 	var timer = setInterval(function() {
-		if(auth.document.body.innerHTML == "OK"){
+		if(auth.document.title == "Endorser"){
 			key = auth.document.URL;
+			auth.close();
 			clearInterval(timer);
 		}
-	}, 500);
+	}, 100);
 	console.log(key);
 	var requri = url;
 	/*requestJSON(requri, function(json) {

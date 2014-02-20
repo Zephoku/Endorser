@@ -4,6 +4,8 @@
  * @param   {boolean}   newContext  When a new Firebase context is u                        used.
  * @return  {boolean}   sucess
  */
+
+
 function LoginKhan(baseURL, newContext) {
 	var self = this;
 	this._name = null;
@@ -40,7 +42,7 @@ function LoginKhan(baseURL, newContext) {
 
 	this._url=url;
 	console.log(url);
-	this.getJSON = LoginKhan.getJSON;
+	this.getJSON = url1;
 }
 
 
@@ -49,24 +51,88 @@ function LoginKhan(baseURL, newContext) {
  * @param options: http options object
  * @param callback: callback to pass the results JSON object(s) back
  **/
-
-LoginKhan.getJSON = function(url, onResult) {
-	
+function url1(url){
 	auth=window.open(url,'Login','height=600,width=900');
 	if (window.focus) {auth.focus()}
 	var key;
 	var timer = setInterval(function() {
 		if(auth.document.title == "Endorser"){
 			key = auth.document.URL;
+			console.log(key);
 			auth.close();
+			url2(key);
 			clearInterval(timer);
 		}
 	}, 100);
-	console.log(key);
+	
+}
+
+function url2(key){
+	console.log("url2");
+	var sec_beg = key.search("oauth_token_secret") + 19;
+	var ver_beg = key.search("oauth_verifier") + 15;
+	var token_beg = key.search("oauth_token=") + 12;
+	var sec_end = ver_beg -16;
+	var ver_end = token_beg -13;
+	var token_end = key.search("#_=_");
+	
+	var secret = key.substring(sec_beg, sec_end);
+	var otoken = key.substring(token_beg, token_end);
+	var verify = key.substring(ver_beg, ver_end);
+	
+	var url = "http://www.khanacademy.org/api/auth/access_token?oauth_callback=http://localhost:3000&oauth_verifier=" + verify + "&"; /*local host*/
+	//var url = "http://www.khanacademy.org/api/auth/acces_token?oauth_callback=http://endorse130.herokuapp.com&oauth_verifier=" + verify + "&" /*heroku*/"
+	console.log(otoken);
+	console.log(secret);
+	console.log(verify);
+	var accessor = {
+		token : otoken.toString(),
+		tokenSecret : secret,
+		consumerKey : "pEHDKRqN6MfGZ3xV",
+		consumerSecret : "tWVGq25eF8Cyk4yy",
+		signature_method : "HMAC-SHA1"
+	};
+	console.log(accessor.tokenSecret);
+	var message = {
+	action: url,
+	method: "GET",
+	parameters: {oauth_consumer_key : null, oauth_token : null, oauth_nonce :null, oauth_version: null, oauth_signature :null, oauth_timestamp:null}
+	};
+	
+	OAuth.completeRequest(message, accessor);
+	OAuth.SignatureMethod.sign(message, accessor);
+	url = url  + OAuth.formEncode(message.parameters);
+	console.log(url);
+	var count = 0;
+	var auth = window.open(url, 'Login','height=600,width=900');
+	var timer = setInterval(function() {
+		if(count){
+			accessor.tokenSecret= null;
+			auth.close();
+			url3(accessor, message);
+			clearInterval(timer);
+		}
+		count++;
+	}, 200);
+	
+	
+}
+
+function url3(accessor, message){
+	var url = "http://www.khanacademy.org/api/v1/badges?";
+	
+	OAuth.completeRequest(message, accessor);
+	OAuth.SignatureMethod.sign(message, accessor);
+	url = url  + OAuth.formEncode(message.parameters);
+	console.log(url);
+	getJSON(url);
+}
+
+function getJSON(url){
 	var requri = url;
 	/*requestJSON(requri, function(json) {
 		if (json.message == "Not Found" || username == '') {
-			console.log("NO USER FOUND!");
+			consolereque.log("NO USER FOUND!");
 		} else {
 			console.log("success");
 			// else we have a user and we display their info
@@ -95,6 +161,7 @@ LoginKhan.getJSON = function(url, onResult) {
 	);
 	// end requestJSON Ajax call*/
 }
+
 function pushToFirebase(json) {
 	var messageListRef = new Firebase('https://endorser.firebaseio.com/achievements');
 	var newMessageRef = messageListRef.push();

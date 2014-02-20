@@ -20,8 +20,8 @@ function LoginKhan(baseURL, newContext) {
 
 	this._firebase = new Firebase(baseURL, newContext || false ? new Firebase.Context() : null);
 
-	var url = "http://www.khanacademy.org/api/auth/request_token?oauth_callback=http://localhost:3000&"; /*local host*/
-	//var url = "http://www.khanacademy.org/api/auth/request_token?oauth_callback=http://endorse130.herokuapp.com&" /*heroku*/
+	var uri = window.document.baseURI;
+	var url = "http://www.khanacademy.org/api/auth/request_token?oauth_callback="+uri+"&"; /*heroku*/
 	var accessor = {
 		token : null,
 		tokenSecret : null,
@@ -79,9 +79,8 @@ function url2(key){
 	var secret = key.substring(sec_beg, sec_end);
 	var otoken = key.substring(token_beg, token_end);
 	var verify = key.substring(ver_beg, ver_end);
-	
-	var url = "http://www.khanacademy.org/api/auth/access_token?oauth_callback=http://localhost:3000&oauth_verifier=" + verify + "&"; /*local host*/
-	//var url = "http://www.khanacademy.org/api/auth/acces_token?oauth_callback=http://endorse130.herokuapp.com&oauth_verifier=" + verify + "&" /*heroku*/"
+	var uri = window.document.baseURI;
+	var url =   "http://www.khanacademy.org/api/auth/access_token?oauth_callback=" + uri +"&oauth_verifier=" + verify + "&"; /*heroku*/
 	console.log(otoken);
 	console.log(secret);
 	console.log(verify);

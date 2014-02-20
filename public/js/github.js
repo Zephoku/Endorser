@@ -90,7 +90,7 @@ LoginGitHub.prototype.getJSON = function(user, onResult){
               console.log(repositories);
               outputPageContent();                
             });          
-        
+            
         function outputPageContent() {
           if(repositories.length == 0) { outputHTML = outputHTML + '<p>No repos!</p></div>'; }
           else {

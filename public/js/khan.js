@@ -70,8 +70,6 @@ function url1(url){
 			clearInterval(timer);
 		}
 	}, 100);
-	
-	
 }
 
 function url2(key){
@@ -116,7 +114,7 @@ function url2(key){
 	var timer = setInterval(function() {
 		if(count){
 			accessor.tokenSecret= null;
-			//auth.close();
+			auth.close();
 			url3(accessor, message);
 			clearInterval(timer);
 		}

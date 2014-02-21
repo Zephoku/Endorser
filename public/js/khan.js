@@ -127,7 +127,8 @@ function url2(key){
 	var auth1 = window.open(url, 'Login','height=600,width=900');
 	var timer = setInterval(function() {
 		if(count){
-			auth1.document.innerHTML;
+			var sec = auth1.document.innerHTML;
+			console.log(sec);
 			//auth1.close();
 			console.log(accessor.tokenSecret);
 			url3(accessor, message);

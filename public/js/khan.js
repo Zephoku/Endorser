@@ -21,6 +21,7 @@ function LoginKhan(baseURL, newContext) {
 	this._firebase = new Firebase(baseURL, newContext || false ? new Firebase.Context() : null);
 
 	var uri = window.document.baseURI;
+	uri = uri.substr(0, uri.length -1);
 	var url = "http://www.khanacademy.org/api/auth/request_token?oauth_callback="+uri+"&"; /*heroku*/
 	var accessor = {
 		token : null,
@@ -41,7 +42,7 @@ function LoginKhan(baseURL, newContext) {
 	url = url  + OAuth.formEncode(message.parameters);
 
 	this._url=url;
-	console.log(url);
+	console.log("request url: "+url);
 	this.getJSON = url1;
 }
 
@@ -55,20 +56,25 @@ function url1(url){
 	auth=window.open(url,'Login','height=600,width=900');
 	if (window.focus) {auth.focus()}
 	var key;
+
 	var timer = setInterval(function() {
-		if(auth.document.title == "Endorser"){
+		var title = null;
+		try{
+			title = auth.document.title;
+		}
+		catch(e){}
+		if(title == "Endorser"){
 			key = auth.document.URL;
-			console.log(key);
-			auth.close();
+			console.log("callback url: "+key);
 			url2(key);
 			clearInterval(timer);
 		}
 	}, 100);
 	
+	
 }
 
 function url2(key){
-	console.log("url2");
 	var sec_beg = key.search("oauth_token_secret") + 19;
 	var ver_beg = key.search("oauth_verifier") + 15;
 	var token_beg = key.search("oauth_token=") + 12;
@@ -80,18 +86,18 @@ function url2(key){
 	var otoken = key.substring(token_beg, token_end);
 	var verify = key.substring(ver_beg, ver_end);
 	var uri = window.document.baseURI;
+	uri = uri.substr(0, uri.length -1);
 	var url =   "http://www.khanacademy.org/api/auth/access_token?oauth_callback=" + uri +"&oauth_verifier=" + verify + "&"; /*heroku*/
-	console.log(otoken);
-	console.log(secret);
-	console.log(verify);
+	console.log("token: "+otoken);
+	console.log("secret: "+secret);
+	console.log("verifier: "+verify);
 	var accessor = {
-		token : otoken.toString(),
+		token : otoken,
 		tokenSecret : secret,
 		consumerKey : "pEHDKRqN6MfGZ3xV",
 		consumerSecret : "tWVGq25eF8Cyk4yy",
 		signature_method : "HMAC-SHA1"
 	};
-	console.log(accessor.tokenSecret);
 	var message = {
 	action: url,
 	method: "GET",
@@ -101,13 +107,13 @@ function url2(key){
 	OAuth.completeRequest(message, accessor);
 	OAuth.SignatureMethod.sign(message, accessor);
 	url = url  + OAuth.formEncode(message.parameters);
-	console.log(url);
+	console.log("access url: "+url);
 	var count = 0;
 	var auth = window.open(url, 'Login','height=600,width=900');
 	var timer = setInterval(function() {
 		if(count){
 			accessor.tokenSecret= null;
-			auth.close();
+			//auth.close();
 			url3(accessor, message);
 			clearInterval(timer);
 		}
@@ -123,7 +129,7 @@ function url3(accessor, message){
 	OAuth.completeRequest(message, accessor);
 	OAuth.SignatureMethod.sign(message, accessor);
 	url = url  + OAuth.formEncode(message.parameters);
-	console.log(url);
+	console.log("badge url: " + url);
 	getJSON(url);
 }
 

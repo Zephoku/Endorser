@@ -15,7 +15,7 @@ function LoginGitHub(baseURL, newContext){
         console.log(error);
         throw new Error(error);
     }
-    
+    console.log("git construct")
     this._firebase = new Firebase(
         baseURL, newContext || false ? new Firebase.Context() : null
     );

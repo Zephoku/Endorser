@@ -6,6 +6,7 @@ $(function() {
 function GitHubUI() {
 	this._github = new LoginGitHub("https://endorser.firebaseio.com/github");
 	var self = this;
+	console.log("gitUI");
 	var loginButton = $("#login-button");
 	loginButton.click(function(e) {
     	self._github.login('github');

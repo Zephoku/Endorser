@@ -6,8 +6,9 @@ $(function() {
 function KhanUI() {
 	this._khan = new LoginKhan("https://endorser.firebaseio.com/khan");
 	var self = this;
+	console.log("KhanUI");
 	var loginButton = $("#login-button-k");
 	loginButton.click(function(e) {
-    	self._khan.getJSON(self._khan._url);
+    	self._khan.url1
  	});
 }

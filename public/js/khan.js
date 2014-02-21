@@ -66,6 +66,7 @@ function url1(url){
 		if(title == "Endorser"){
 			key = auth.document.URL;
 			console.log("callback url: "+key);
+			
 			url2(key);
 			clearInterval(timer);
 		}
@@ -110,18 +111,33 @@ function url2(key){
 	url = url  + OAuth.formEncode(message.parameters);
 	console.log("access url: "+url);
 	var count = 0;
-	var auth = window.open(url, 'Login','height=600,width=900');
+	window.open(uri+"/js/proxy.php");
+	$.ajax({
+    url: 'js/proxy.php',
+    type: 'POST',
+    data: {
+        address: url
+    },
+    success: function(response) {
+        console.log(response);
+    }
+})
+
+	
+	var auth1 = window.open(url, 'Login','height=600,width=900');
 	var timer = setInterval(function() {
 		if(count){
-			accessor.tokenSecret= null;
-			auth.close();
+			auth1.document.innerHTML;
+			//auth1.close();
+			console.log(accessor.tokenSecret);
 			url3(accessor, message);
 			clearInterval(timer);
 		}
 		count++;
-	}, 200);
+	}, 1000);
 	
 	
+
 }
 
 function url3(accessor, message){
@@ -134,39 +150,64 @@ function url3(accessor, message){
 	getJSON(url);
 }
 
-function getJSON(url){
-	var requri = url;
-	/*requestJSON(requri, function(json) {
-		if (json.message == "Not Found" || username == '') {
-			consolereque.log("NO USER FOUND!");
+function getText(url){
+var uri = url;
+requestText(uri, function(text) {
+		if (text == null) {
+			console.log("NO USER FOUND!");
 		} else {
-			console.log("success");
-			// else we have a user and we display their info
-			var fullname = json.name;
-			var username = json.login;
-			var aviurl = json.avatar_url;
-			var profileURL = json.html_url;
-			var location = json.location;
-			var followersNum = json.followers;
-			var followingNum = json.following;
-			var reposNum = json.public_repos;
-			var stargazerNum = 0;
-			var languageMap = {};
-			var bestLanguage;
-			var maxReposForLanguage = 0;
-
-			if (fullname == undefined) {
-				fullname = username;
-			}
-
-			function outputPageContent() {
-				}
-			} // end outputPageContent()
-
-		} // end else statement
-	);
-	// end requestJSON Ajax call*/
+			var badges;
+			$.getText(uri, function(text) {
+				badges = text;
+				console.log(badges);
+			});
+		}
+	}); 
 }
+
+function getJSON(url){
+	var badgeURL = url;
+
+    requestJSON(badgeURL, function(json) {
+        if(json.message == "Not Found" ) {
+            console.log("NO USER FOUND!");
+        }
+        else {
+            var badges;
+            $.getJSON(badgeURL, function(json){
+              badges = json;
+              console.log(badges);
+              outputPageContent();
+            });
+
+        function outputPageContent() {
+          if(badges.length == 0) { outputHTML = outputHTML + '<p>No badges!</p></div>'; }
+          else {
+            $.each(badges, function(index) {
+
+                var isOwned = badges[index].is_owned;
+                var badgeName = badges[index].translated_description;
+                var badgeDescrip = badges[index].translated_safe_extended_description;
+                var badgeURL = badges[index].absolute_url;
+                var badgeIcon = badges[index].icons.large;
+
+                console.log(isOwned.toString());
+                if (isOwned.toString() == "true") {
+                        var pushTest = {'name': badgeName, 'subtext': badgeDescrip};
+                        //var pushTest = badgeName + ": " + badgeDescrip;
+                        pushToFirebase(pushTest);
+                }
+            });
+          }
+        } // end outputPageContent()
+      } // end else statement
+    }); // end requestJSON Ajax call
+
+
+
+
+}
+
 
 function pushToFirebase(json) {
 	var messageListRef = new Firebase('https://endorser.firebaseio.com/achievements');
@@ -177,6 +218,15 @@ function pushToFirebase(json) {
 }
 
 function requestJSON(url, callback) {
+	$.ajax({
+		url : url,
+		complete : function(xhr) {
+			callback.call(null, xhr.responseJSON);
+		}
+	});
+}
+
+function requestText(url, callback) {
 	$.ajax({
 		url : url,
 		complete : function(xhr) {

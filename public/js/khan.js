@@ -78,9 +78,12 @@ function url2(key){
 	var sec_beg = key.search("oauth_token_secret") + 19;
 	var ver_beg = key.search("oauth_verifier") + 15;
 	var token_beg = key.search("oauth_token=") + 12;
-	var sec_end = ver_beg -16;
-	var ver_end = token_beg -13;
+	var sec_end = key.search("&oauth_verifier");
+	var ver_end = key.search("&oauth_token=");
 	var token_end = key.search("#_=_");
+	if(token_end == -1){
+		token_end = key.length;
+	}
 	
 	var secret = key.substring(sec_beg, sec_end);
 	var otoken = key.substring(token_beg, token_end);

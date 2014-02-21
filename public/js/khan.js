@@ -111,19 +111,7 @@ function url2(key){
 	url = url  + OAuth.formEncode(message.parameters);
 	console.log("access url: "+url);
 	var count = 0;
-	window.open(uri+"/js/proxy.php");
-	$.ajax({
-    url: 'js/proxy.php',
-    type: 'POST',
-    data: {
-        address: url
-    },
-    success: function(response) {
-        console.log(response);
-    }
-})
-
-	
+		
 	var auth1 = window.open(url, 'Login','height=600,width=900');
 	var timer = setInterval(function() {
 		if(count){

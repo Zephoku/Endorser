@@ -4,7 +4,6 @@ firebaseApp.controller('searchCTRL', searchCTRL);
 function searchCTRL($scope, $firebase) {
   var achievementList = new Firebase("https://endorser.firebaseio.com/achievements") ;
 
-  $scope.query = "";
   $scope.achievements = $firebase(achievementList);
   console.log($scope.achievements);
 

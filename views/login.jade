@@ -1,0 +1,12 @@
+extends layout
+
+block scripts
+  script(src="/js/login.js")
+
+block content
+  form
+    label Email
+      input#email(type = "text") 
+    label Password
+      input#password(type = "password") 
+    input(type="submit")

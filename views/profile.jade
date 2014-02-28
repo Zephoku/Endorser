@@ -15,6 +15,15 @@ block scripts
 
 
 block content
+  script.
+    var init = function() {
+    var card = document.getElementById('card');
+  
+    document.getElementById('flip').addEventListener( 'click', function(){
+      card.toggleClassName('flipped');
+      }, false);
+    };
+    window.addEventListener('DOMContentLoaded', init, false);
   div.content
     nav.navbar.navbar-default
       div.container
@@ -35,7 +44,7 @@ block content
             input(type='text', ng-model='q')
         div.searchcontent
           ul.achievementlist
-            li.achievement(ng-repeat="achieve in achievements | filter:q")
+            li.hexagon.achievement(ng-repeat="achieve in achievements | filter:q")
               {{achieve.name}}
               br
               {{achieve.subtext}}

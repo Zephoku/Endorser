@@ -28,7 +28,7 @@
   overflow: hidden;
   margin: auto;
   width: 1000px;
- }
+}
 
 .searchpanel {
   float: left;
@@ -71,8 +71,29 @@
   display: inline-block;
   vertical-align:bottom;
   width: 280px;
-  height: 80px;
-  -webkit-box-shadow: 0 2px 4px 1px #000;
-  box-shadow: 0 2px 4px 1px #000;
-  margin: 15px;
+  height: 150px;
+  margin: 50px 50px 50px 50px;
+}
+
+.hexagon {
+    margin-top: 70px;
+    width: 170px;
+    height: 90px;
+    background: #6C6;
+    position: relative;
+}
+.hexagon:before, .hexagon:after {
+    content:"";
+    border-left: 85px solid transparent;
+    border-right: 85px solid transparent;
+    position: absolute;
+}
+.hexagon:before {
+    top: -60px;
+    border-bottom: 60px solid #6C6;
+}
+.hexagon:after {
+    bottom: -60px;
+    left: 0px;
+    border-top: 60px solid #6C6;
 }

@@ -43,7 +43,7 @@ LoginGitHub.prototype = {
         var self = this;
         if (error) {
             console.log(error);
-        } else if (githubUser) {
+        } else if (githubUser && githubUser.id != this._userID) {
         //   alert("Hello " + user.login +"!");
             self.getJSON(githubUser, this._userID);
             console.log('GitHub user ID: ' + githubUser.id);

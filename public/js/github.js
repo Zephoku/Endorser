@@ -4,10 +4,10 @@
  * @param   {boolean}   newContext  When a new Firebase context is u                        used.
  * @return  {boolean}   sucess
  */
-function LoginGitHub(baseURL, newContext){
+function LoginGitHub(baseURL, githubUserID, newContext){
     var self = this;
+    this._userID = githubUserID;
     this._name = null;
-    this._userID = null;
     this._firebase = null;
 
     if(!baseURL || typeof baseURL != "string") {
@@ -19,8 +19,8 @@ function LoginGitHub(baseURL, newContext){
     this._firebase = new Firebase(
         baseURL, newContext || false ? new Firebase.Context() : null
     );
-    this._firebaseAuthClient = new FirebaseSimpleLogin(this._firebase, function(error, user) {
-        self._onLoginStateChange(error, user);
+    this._firebaseAuthClient = new FirebaseSimpleLogin(this._firebase, function(error, gitHubUser) {
+        self._onLoginStateChange(error, gitHubUser);
     });
 
     this.login = function(provider){
@@ -39,15 +39,14 @@ LoginGitHub.prototype = {
             //logged out
         }
     },
-    _onLoginStateChange: function(error, user) {
+    _onLoginStateChange: function(error, githubUser) {
         var self = this;
         if (error) {
             console.log(error);
-        } else if (user) {
+        } else if (githubUser) {
         //   alert("Hello " + user.login +"!");
-            var result;
-            self.getJSON(user, result);
-            console.log(result); 
+            self.getJSON(githubUser, this._userID);
+            console.log('GitHub user ID: ' + githubUser.id);
         } else {
             //logout
         }
@@ -59,7 +58,7 @@ LoginGitHub.prototype = {
     * @param options: http options object
     * @param callback: callback to pass the results JSON object(s) back
  **/
-LoginGitHub.prototype.getJSON = function(user, onResult){
+LoginGitHub.prototype.getJSON = function(user, userID){
     var username = user.login;
     var requri   = 'https://api.github.com/users/'+username;
     var repouri  = 'https://api.github.com/users/'+username+'/repos';
@@ -88,11 +87,11 @@ LoginGitHub.prototype.getJSON = function(user, onResult){
             $.getJSON(repouri, function(json){
               repositories = json;   
               console.log(repositories);
-              outputPageContent();                
+              outputPageContent(userID);                
             });          
             
-        function outputPageContent() {
-          if(repositories.length == 0) { outputHTML = outputHTML + '<p>No repos!</p></div>'; }
+        function outputPageContent(userID) {
+          if(repositories.length == 0) { var outputHTML='<p>No repos!</p></div>'; }
           else {
             $.each(repositories, function(index) {
                 stargazerNum = stargazerNum + repositories[index].stargazers_count;
@@ -112,25 +111,24 @@ LoginGitHub.prototype.getJSON = function(user, onResult){
 
             var popularitySubText = json.name + " has " + json.followers + " followers.";
             var popularityAchievements = {'name': 'GitHub Popularity', 'subtext': popularitySubText, 'image': "", 'priority': 0, 'source': 'github'};
-            pushToFirebase(popularityAchievements);
+            pushToFirebase(popularityAchievements, userID, 1);
 
             var starSubText = json.name + " star-gazes " + stargazerNum + " repositories.";
             var starAchievements = {'name': 'Starry Developer', 'subtext': starSubText, 'image': "", 'priority': 0, 'source': 'github'};
-            pushToFirebase(starAchievements);
+            pushToFirebase(starAchievements, userID, 2);
 
             var bestLangSubText = json.name + "'s best language is " + bestLanguage +".";
             var languageAchievements = {'name': 'Best Language', 'subtext': bestLangSubText, 'image': "", 'priority': 0, 'source': 'github'};
-            pushToFirebase(languageAchievements);
+            pushToFirebase(languageAchievements, userID, 3);
           }
         } // end outputPageContent()
       } // end else statement
     }); // end requestJSON Ajax call
 }
-function pushToFirebase(json) {
-    var messageListRef = new Firebase('https://endorser.firebaseio.com/achievements');
-    var newMessageRef = messageListRef.push();
-    newMessageRef.set(json);
-    var x = newMessageRef.toString();
+function pushToFirebase(json, userID, achievementID) {
+    var messageListRef = new Firebase('https://endorser.firebaseio.com/users/+' + userID + '/achievements/github/' + achievementID);
+    messageListRef.update(json);
+    var x = json.toString();
     console.log(x);
 }
 function requestJSON(url, callback) {

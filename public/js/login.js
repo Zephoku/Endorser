@@ -1,5 +1,5 @@
 var email, password;
-var chatRef = new Firebase('https://endorser.firebaseio.com/users');
+var chatRef = new Firebase('https://endorser.firebaseio.com/');
 var auth = new FirebaseSimpleLogin(chatRef, function(error, user) {
   if (error) {
     // an error occurred while attempting login

@@ -1,21 +1,27 @@
 extends layout
 
+block links
+  link(rel='stylesheet', href="/css/register.css")
+
 block scripts
   script(src="/js/register.js")
 
 block content
-  h1 Register
-  form
-    label First Name
-      input#first-name(type = "text") 
-    br
-    label Last Name
-      input#last-name(type = "text") 
-    br
-    label Email
-      input#email(type = "text") 
-    br
-    label Password
-      input#password(type = "password") 
-    br
-    input(type="submit")
+  form.registration(role="form")
+    h1 Register
+    .form-group
+      label First Name
+      input#first-name.form-control(type = "text", placeholder="Enter First Name") 
+
+    .form-group
+      label Last Name
+      input#last-name.form-control(type = "text", placeholder="Enter Last Name") 
+        
+    .form-group
+      label Email
+      input#email.form-control(type = "text", placeholder="Enter Email") 
+
+    .form-group
+      label Password
+      input#password.form-control(type = "password", placeholder="*******") 
+    input.btn.btn-default(type="submit")

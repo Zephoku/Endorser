@@ -5,6 +5,8 @@
 var express = require('express');
 var routes = require('./routes');
 var fireRoute = require('./routes/fire');
+var register = require('./routes/register');
+var displayer = require('./routes/displayerapi');
 var http = require('http');
 var https = require('https');
 var path = require('path');
@@ -43,6 +45,9 @@ if ('development' === app.get('env')) {
 app.get('/', routes.index);
 app.get('/profile', routes.profile);
 app.get('/fire', fireRoute.page);
+app.get('/register', register.create);
+app.get('/login', register.login);
+app.get('/displayer', displayer.convert);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));

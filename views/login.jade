@@ -1,0 +1,16 @@
+extends layout
+
+block links
+  link(rel='stylesheet', href="/css/register.css")
+
+block scripts
+  script(src="/js/login.js")
+
+block content
+  h1 Login
+  form(action = "/profile")
+    label Email
+      input#email(type = "text", placeholder="Enter Email") 
+    label Password
+      input#password(type = "password", placeholder="*******") 
+    input(type="submit")

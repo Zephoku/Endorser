@@ -4,15 +4,11 @@ block links
   link(rel='stylesheet', href='/css/profile.css')
 
 block scripts
+  script(src="/js/profileUI.js")
   script(src='/js/search.js')
   script(src="/js/github.js")
-  script(src="/js/githubUI.js")
-  script(src="/js/jquery.js")
   script(src="/js/sha1.js")
   script(src="/js/oauth.js")
-  script(src="/js/khan.js")
-  script(src="/js/KhanUI.js")
-
 
 block content
   script.
@@ -29,13 +25,19 @@ block content
       div.container
         div.navbar-header
           a.navbar-brand(href="#") Endorser
+        ul.nav.navbar-nav.navbar-right
+          li 
+            a(href="register") Register
+          li 
+            a(href="login") Login
+          li 
+            a#logout(href="#") Logout
     div.namebar
       div.namebar.namebar-container
         img.profleicon(src='/img/profile.png',width='100', height='100')
         span.name Anthony Endergame
         div.connectbuttons
-          button#login-button-k Connect with Khan Academy
-          button#login-button Connect with Github
+          button#github-button Connect with Github
       div.clear
     div.content(ng-app='search-module')
       div.search-module(ng-controller='searchCTRL')

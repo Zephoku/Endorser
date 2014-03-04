@@ -1,14 +1,14 @@
 var firebaseApp = angular.module('search-module', ['firebase']);
+var userID = getParameterByName('userID');
 firebaseApp.controller('searchCTRL', searchCTRL);
 
 function searchCTRL($scope, $firebase) {
-  var achievementList = new Firebase("https://endorser.firebaseio.com/achievements") ;
-
+  var achievementList = new Firebase("https://endorser.firebaseio.com/users/" + userID + "/achievements/") ;
   $scope.achievements = $firebase(achievementList);
-  console.log($scope.achievements);
+  console.log("$scope: "+$scope.achievements);
 
   var test = $scope.achievements.$getIndex();
-  console.log(test);
+  console.log("$scope index: " + test);
 
   $scope.orderProp = 'name';
 }

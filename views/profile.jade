@@ -36,8 +36,8 @@ block content
           label.narrowdown Narrow Down
             input(type='text', ng-model='q')
         div.searchcontent
-          ul.achievementlist
-            li.achievement(ng-repeat="achieve in achievements | filter:q")
+          ul.achievementlist(ng-repeat="source in achievements | filter:q")
+            li.achievement(ng-repeat="achieve in source | filter:q", ng-if="achieve.name!=NULL")
               {{achieve.name}}
               br
               {{achieve.subtext}}

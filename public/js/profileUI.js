@@ -8,7 +8,7 @@ function getParameterByName(name) {
 var email, password;
 var chatRef = new Firebase('https://endorser.firebaseio.com/profile');
 var userID = getParameterByName('userID');
-console.log("User with ID: " + userID + " is logged in.");
+console.log("User with ID:" + userID + " is logged in.");
 
 var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
 	

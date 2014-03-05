@@ -47,6 +47,7 @@ LoginGitHub.prototype = {
         //   alert("Hello " + user.login +"!");
             self.getJSON(githubUser, this._userID);
             console.log('GitHub user ID: ' + githubUser.id);
+            self._firebaseAuthClient.logout();
         } else {
             //logout
         }

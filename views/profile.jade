@@ -35,7 +35,7 @@ block content
     div.app(ng-app='search-module', ng-controller='searchCTRL')
       div.namebar
         div.namebar.namebar-container
-          img.profleicon(src='/img/profile.png',width='100', height='100')
+          img.profleicon(src='{{userStats.profile_pic}}', height='100')
           span.name
             {{userStats.first_name}} {{userStats.last_name}}
           div.connectbuttons

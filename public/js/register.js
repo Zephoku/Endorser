@@ -22,6 +22,7 @@ $(document).ready(function() {
     lastName = $( "#last-name" ).val();
     email = $( "#email" ).val();
     password = $( "#password" ).val();
+    profilePic = $( "#profilePic" ).val();
 
     auth.createUser(email, password, function(error, user) {
       if (!error) {
@@ -31,7 +32,8 @@ $(document).ready(function() {
         users.set({
           first_name: firstName,
           last_name: lastName,
-          email: email
+          email: email,
+          profile_pic: profilePic
         });
       }
       else {

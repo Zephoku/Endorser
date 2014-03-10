@@ -47,6 +47,7 @@ LoginGitHub.prototype = {
         //   alert("Hello " + user.login +"!");
             self.getJSON(githubUser, this._userID);
             console.log('GitHub user ID: ' + githubUser.id);
+            self._firebaseAuthClient.logout();
         } else {
             //logout
         }
@@ -126,7 +127,7 @@ LoginGitHub.prototype.getJSON = function(user, userID){
     }); // end requestJSON Ajax call
 }
 function pushToFirebase(json, userID, achievementID) {
-    var messageListRef = new Firebase('https://endorser.firebaseio.com/users/+' + userID + '/achievements/github/' + achievementID);
+    var messageListRef = new Firebase('https://endorser.firebaseio.com/users/' + userID + '/achievements/github/' + achievementID);
     messageListRef.update(json);
     var x = json.toString();
     console.log(x);

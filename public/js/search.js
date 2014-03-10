@@ -11,4 +11,9 @@ function searchCTRL($scope, $firebase) {
   console.log("$scope index: " + test);
 
   $scope.orderProp = 'name';
+
+  var userStatsList = new Firebase("https://endorser.firebaseio.com/users/" + userID) ;
+  $scope.userStats = $firebase(userStatsList);
+  console.log($scope.userStats.toString());
+
 }

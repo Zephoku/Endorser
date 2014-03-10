@@ -26,4 +26,3 @@ var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
     	});
     }
 });
-

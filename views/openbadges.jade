@@ -1,0 +1,41 @@
+extends layout  
+
+block scripts
+  script(src="/js/openbades.js")
+
+block content
+  div.content
+    nav.navbar.navbar-default
+      div.container
+        div.navbar-header
+          a.navbar-brand(href="#") Endorser
+        ul.nav.navbar-nav.navbar-right
+          li 
+            a(href="register") Register
+          li 
+            a(href="login") Login
+          li 
+            a#logout(href="#") Logout
+    div.namebar
+      div.namebar.namebar-container
+        img.profleicon(src='/img/profile.png',width='100', height='100')
+        span.name Anthony Endergam
+        div.connectbuttons
+          button#github-button Connect with Github
+          button#openbadges-button Connect with OpenBadges
+      div.clear
+    div.content(ng-app='search-module')
+      div.search-module(ng-controller='searchCTRL')
+        div.searchpanel
+          label.narrowdown Narrow Down
+            input(type='text', ng-model='q')
+        div.searchcontent
+          ul.achievementlist
+            li.achievement(ng-repeat="achieve in achievements | filter:q")
+              {{achieve.name}}
+              br
+              {{achieve.subtext}}
+              br
+              {{achieve.source}}
+        div.clear
+

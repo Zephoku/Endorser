@@ -13,8 +13,10 @@ console.log("User with ID:" + userID + " is logged in.");
 var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
 	
     var __github_ui;
+    var __openbadges_ui;
     $(function() {
     	__github_ui = new GitHubUI();
+        __openbadges_ui = new OpenBadgesUI();
     });
 
     function GitHubUI() {
@@ -24,5 +26,13 @@ var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
     	loginButton.click(function(e) {
     		self._github.login('github');
     	});
+    }
+
+    function OpenBadgesUI() {
+        var loginButtonOpenBadges = $("#openbadges-button");
+        loginButtonOpenBadges.click(function(e) {
+            var openb_email = prompt("Please enter your email address","");
+            GetBadges(openb_email, userID);
+        });
     }
 });

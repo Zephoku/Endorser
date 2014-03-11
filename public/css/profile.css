@@ -1,3 +1,12 @@
+@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+
+body {
+  background:url(bg.jpg);
+  background-size: 100%;
+  background-repeat:no-repeat;
+}
+
 .navbar {
   margin: auto;
   text-align: center;
@@ -8,7 +17,7 @@
 }
 
 .namebar {
-  background-color: #3C3C3C;
+  background-color:rgba(0,0,0,0.2);
   margin: auto;
   height: 165px;
   width: 100%;
@@ -17,11 +26,21 @@
   padding: 30px;
   width: 1000px;
 }
-
+.name {
+  font-family: quickSand;
+  src: url(Quicksand-Regular.woff);
+}
+.profileicon {
+  height:auto; 
+  width:auto;
+  max-width:110px; 
+  max-height:110px;
+  background-repeat: no-repeat;
+  text-align: center;
+}
 .content {
   min-height: 300px;
   height: 100%;
-  background-color: #A2A2A2;
 }
 
 .search-module{ 
@@ -31,20 +50,17 @@
 }
 
 .searchpanel {
-  float: left;
-  width: 300px;
-  min-height: 200px;
-  margin: 10px;
-  background-color: #fff;
+  float: top;
+  min-height: 20px;
+  margin: 5px;
+
 }
 
 .searchcontent {
-  float: right;
-  width: 660px;
+  float: bottom;
   min-height: 300px;
   max-height: 800px;
-  margin: 10px;
-  background-color: #fff;
+  margin: 5px;
   overflow: hidden;
 }
 
@@ -58,7 +74,7 @@
 
 .name {
   font-size: 36px;
-  padding-left: 50px;
+  padding-left: 30px;
   line-height: 94px;
   color: #fff;
 }
@@ -70,15 +86,16 @@
 .achievement {
   display: inline-block;
   vertical-align:bottom;
+  text-align: center;
   width: 280px;
-  height: 150px;
-  margin: 50px 50px 50px 50px;
+  height: 120px;
+  margin: 10px 20px 70px 20px;
 }
 
 .hexagon {
     margin-top: 70px;
     width: 170px;
-    height: 90px;
+    height: 80px;
     background: #6C6;
     position: relative;
 }
@@ -90,6 +107,7 @@
 }
 .hexagon:before {
     top: -60px;
+    left: 0px;
     border-bottom: 60px solid #6C6;
 }
 .hexagon:after {

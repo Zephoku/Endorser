@@ -10,6 +10,8 @@ block scripts
   script(src="/js/sha1.js")
   script(src="/js/oauth.js")
 
+  meta(name="viewport" content="width=device-width, initial-scale=1")
+
 block content
   script.
     var init = function() {
@@ -35,17 +37,14 @@ block content
     div.app(ng-app='search-module', ng-controller='searchCTRL')
       div.namebar
         div.namebar.namebar-container
-          img.profleicon(src='{{userStats.profile_pic}}', height='100')
+          img.profileicon(class="img-circle", src='{{userStats.profile_pic}}')
           span.name
             {{userStats.first_name}} {{userStats.last_name}}
           div.connectbuttons
-            button#github-button Connect with Github
+            button.btn.btn-default.btn#github-button Connect with Github
         div.clear
       div.content
         div.search-module
-          div.searchpanel
-            label.narrowdown Narrow Down
-              input(type='text', ng-model='q')
           div.searchcontent
             ul.achievementlist(ng-repeat="source in achievements | filter:q")
               li.hexagon.achievement(ng-repeat="achieve in source | filter:q", ng-if="achieve.name!=NULL")

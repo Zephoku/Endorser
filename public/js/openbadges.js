@@ -33,7 +33,7 @@ function GetBadges(emailParam, uid){
                                 var achID = 4;
                                 for(var j = 0; j < badges.length; j++) {
                                     all_badges.push(badges[j]);
-                                    var newBadge = {'name': json.badges[j].assertion.badge.name, 'subtext': json.badges[j].assertion.badge.description, 'image': "", 'priority': 0, 'source': 'openB'};
+                                    var newBadge = {'name': json.badges[j].assertion.badge.name, 'subtext': json.badges[j].assertion.badge.description, 'image': "", 'priority': 0, 'source': 'OpenBadges'};
                                     pushToFirebase(newBadge,uid,achID)
                                     achID++;
                                 }

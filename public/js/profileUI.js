@@ -32,7 +32,13 @@ var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
         var loginButtonOpenBadges = $("#openbadges-button");
         loginButtonOpenBadges.click(function(e) {
             var openb_email = prompt("Please enter your email address","");
-            GetBadges(openb_email, userID);
+            if (openb_email != null && validateEmail(openb_email)) {
+                GetBadges(openb_email, userID);
+            }
         });
     }
+    function validateEmail(email) { 
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    } 
 });

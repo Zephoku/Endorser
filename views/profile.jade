@@ -42,16 +42,16 @@ block content
             ul.achievementlist(ng-repeat="source in achievements | filter:q")
               li.achievement(ng-repeat="achieve in source | filter:q", ng-if="achieve.name!=NULL")
                 section.containerB
-                  div#card
-                  img(src="/img/badge.png", width="200")
-                  figure.front
-                    h3
-                      {{achieve.name}}
-                    br
-                  figure.back
-                    h5
-                      {{achieve.subtext}}
+                  div.card
+                    img(src="/img/badge.png", width="200")
+                    figure.front
+                      h3
+                        {{achieve.name}}
                       br
-                      {{achieve.source}}
+                    figure.back
+                      h5
+                        {{achieve.subtext}}
+                        br
+                        {{achieve.source}}
           div.clear
 

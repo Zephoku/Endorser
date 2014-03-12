@@ -30,7 +30,7 @@ function GetBadges(emailParam, uid){
                                 console.log("NO USER FOUND");
                             } else {
                                 var badges = json.badges;
-                                var achID = 4;
+                                var achID = 1;  //badge ID starts at one because these are openbadges, not github badges, stored in separate area
                                 for(var j = 0; j < badges.length; j++) {
                                     all_badges.push(badges[j]);
                                     var newBadge = {'name': json.badges[j].assertion.badge.name, 'subtext': json.badges[j].assertion.badge.description, 'image': "", 'priority': 0, 'source': 'OpenBadges'};
@@ -40,7 +40,6 @@ function GetBadges(emailParam, uid){
                             }
                         });
                     }
-                    //should have all badges at this point
                 }
 
             });
@@ -50,7 +49,7 @@ function GetBadges(emailParam, uid){
 }
 
 function pushToFirebase(json, userID, achievementID) {
-    var messageListRef = new Firebase('https://endorser.firebaseio.com/users/' + userID + '/achievements/github/' + achievementID);
+    var messageListRef = new Firebase('https://endorser.firebaseio.com/users/' + userID + '/achievements/openbadges/' + achievementID);
     messageListRef.update(json);
     var x = json.toString();
     console.log(x);

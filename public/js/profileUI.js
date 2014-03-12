@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 });
 
-$(document).on('click', ".card", function(e) {
+$(document).on('click', "#card", function(e) {
     $(this).toggleClass("flipped");
     console.log("Card is flipped")
     e.preventDefault();

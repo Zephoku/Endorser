@@ -16,7 +16,7 @@ var auth = new FirebaseSimpleLogin(chatRef, function(error, user) {
 });
 
 $(document).ready(function() {
-  $( "form" ).submit(function( event ) {
+  $( ".registration" ).submit(function( event ) {
     event.preventDefault();
     email = $( "#email" ).val();
     password = $( "#password" ).val();

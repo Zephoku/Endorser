@@ -30,8 +30,7 @@ block content
       div.namebar
         div.namebar.namebar-container
           img.profileicon(class="img-circle", src='{{userStats.profile_pic}}')
-          span.name
-            {{userStats.first_name}} {{userStats.last_name}}
+          span.name {{userStats.first_name}} {{userStats.last_name}}
           div.connectbuttons
             button.btn.btn-default.btn#github-button Connect with Github
             button.btn.btn-default.btn#openbadges-button Connect with OpenBadges
@@ -42,16 +41,13 @@ block content
             ul.achievementlist(ng-repeat="source in achievements | filter:q")
               li.achievement(ng-repeat="achieve in source | filter:q", ng-if="achieve.name!=NULL")
                 section.containerB
-                  div.card
-                    img(src="/img/badge.png", width="200")
+                  div#card
+                    img#badge(src="/img/badge.png")
                     figure.front
-                      h3
-                        {{achieve.name}}
-                      br
+                      {{achieve.name}}
                     figure.back
-                      h5
-                        {{achieve.subtext}}
-                        br
-                        {{achieve.source}}
+                      {{achieve.subtext}} 
+                      p 
+                        Source: {{achieve.source}}
           div.clear
 

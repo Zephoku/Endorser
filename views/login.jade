@@ -7,10 +7,12 @@ block scripts
   script(src="/js/login.js")
 
 block content
-  h1 Login
-  form(action = "/profile")
-    label Email
-      input#email(type = "text", placeholder="Enter Email") 
-    label Password
-      input#password(type = "password", placeholder="*******") 
-    input(type="submit")
+  form.registration(action = "/profile")
+    h1 Login
+    .form-group
+        label Email
+        input#email.form-control(type = "text", placeholder="Enter Email") 
+    .form-group
+        label Password
+        input#password.form-control(type = "password", placeholder="*******") 
+    input.btn.btn-default(type="submit")

@@ -26,3 +26,10 @@ var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
     	});
     }
 });
+
+
+var card = $('#card');
+card.on('click', function(e) {
+    $('#card').toggleClass("flipped");
+    e.preventDefault();
+});

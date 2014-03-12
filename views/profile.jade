@@ -13,22 +13,13 @@ block scripts
   meta(name="viewport" content="width=device-width, initial-scale=1")
 
 block content
-  script.
-    var init = function() {
-    var card = document.getElementById('card');
-  
-    document.getElementById('flip').addEventListener( 'click', function(){
-      card.toggleClassName('flipped');
-      }, false);
-    };
-    window.addEventListener('DOMContentLoaded', init, false);
   div.content
     nav.navbar.navbar-default
       div.container
         div.navbar-header
           a.navbar-brand(href="#") Endorser
         ul.nav.navbar-nav.navbar-right
-          li 
+          li
             a(href="register") Register
           li 
             a(href="login") Login
@@ -47,11 +38,18 @@ block content
         div.search-module
           div.searchcontent
             ul.achievementlist(ng-repeat="source in achievements | filter:q")
-              li.hexagon.achievement(ng-repeat="achieve in source | filter:q", ng-if="achieve.name!=NULL")
-                {{achieve.name}}
-                br
-                {{achieve.subtext}}
-                br
-                {{achieve.source}}
+              li.achievement(ng-repeat="achieve in source | filter:q", ng-if="achieve.name!=NULL")
+                section.containerB
+                  div#card
+                  img(src="/img/badge.png", width="200")
+                  figure.front
+                    h3
+                      {{achieve.name}}
+                    br
+                  figure.back
+                    h5
+                      {{achieve.subtext}}
+                      br
+                      {{achieve.source}}
           div.clear
 

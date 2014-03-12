@@ -1,8 +1,5 @@
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-
 body {
-  background:url(bg.jpg);
+  background:url(/img/bg.jpg);
   background-size: 100%;
   background-repeat:no-repeat;
 }
@@ -87,31 +84,97 @@ body {
   display: inline-block;
   vertical-align:bottom;
   text-align: center;
-  width: 280px;
+  width: 180px;
   height: 120px;
   margin: 10px 20px 70px 20px;
 }
 
 .hexagon {
-    margin-top: 70px;
-    width: 170px;
-    height: 80px;
-    background: #6C6;
-    position: relative;
+  margin-top: 70px;
+  width: 150px;
+  height: 70px;
+  background: #FFF;
+  position: relative;
+  box-shadow: 5px 5px 15px #aaa;
 }
 .hexagon:before, .hexagon:after {
-    content:"";
-    border-left: 85px solid transparent;
-    border-right: 85px solid transparent;
-    position: absolute;
+  content:"";
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  position: absolute;
 }
 .hexagon:before {
-    top: -60px;
-    left: 0px;
-    border-bottom: 60px solid #6C6;
+  top: -60px;
+  left: 0px;
+  border-bottom: 60px solid #FFF;
 }
 .hexagon:after {
-    bottom: -60px;
-    left: 0px;
-    border-top: 60px solid #6C6;
+  bottom: -60px;
+  left: 0px;
+  border-top: 60px solid #FFF;
+}
+
+.containerB {
+  width: 180px;
+  height: 120px;
+  position: relative;
+  -webkit-perspective: 800px;
+         -moz-perspective: 800px;
+           -o-perspective: 800px;
+              perspective: 800px;
+}
+
+#card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transition: -webkit-transform 1s;
+         -moz-transition: -moz-transform 1s;
+           -o-transition: -o-transform 1s;
+              transition: transform 1s;
+      -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+           -o-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+}
+#card.flipped {
+  -webkit-transform: rotateY( 180deg );
+         -moz-transform: rotateY( 180deg );
+           -o-transform: rotateY( 180deg );
+              transform: rotateY( 180deg );
+}
+#card figure {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+         -moz-backface-visibility: hidden;
+           -o-backface-visibility: hidden;
+              backface-visibility: hidden;
+}
+#card .front {
+
+}
+#card .back {
+  -webkit-transform: rotateY( 180deg );
+         -moz-transform: rotateY( 180deg );
+           -o-transform: rotateY( 180deg );
+              transform: rotateY( 180deg );
+}
+
+h3{
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+}
+h5{
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  width: 100%;
+  color: #FFF;
 }

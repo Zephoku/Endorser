@@ -34,7 +34,7 @@ function GetBadges(emailParam, uid){
                                 for(var j = 0; j < badges.length; j++) {
                                     all_badges.push(badges[j]);
                                     var newBadge = {'name': json.badges[j].assertion.badge.name, 'subtext': json.badges[j].assertion.badge.description, 'image': "", 'priority': 0, 'source': 'OpenBadges'};
-                                    pushToFirebase(newBadge,uid,achID);
+                                    pushToFirebaseOB(newBadge,uid,achID);
                                     achID++;
                                 }
                             }
@@ -48,7 +48,7 @@ function GetBadges(emailParam, uid){
 
 }
 
-function pushToFirebase(json, userID, achievementID) {
+function pushToFirebaseOB(json, userID, achievementID) {
     var messageListRef = new Firebase('https://endorser.firebaseio.com/users/' + userID + '/achievements/openbadges/' + achievementID);
     messageListRef.update(json);
     var x = json.toString();

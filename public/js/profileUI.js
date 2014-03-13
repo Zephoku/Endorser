@@ -16,7 +16,7 @@ var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
     var __openbadges_ui;
     $(function() {
     	__github_ui = new GitHubUI();
-        __openbadges_ui = new OpenBadgesUI();
+//        __openbadges_ui = new OpenBadgesUI();
     });
 
     function GitHubUI() {

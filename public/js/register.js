@@ -35,11 +35,12 @@ $(document).ready(function() {
           email: email,
           profile_pic: profilePic
         });
+        window.location= '/profile?userID=' + user.id;
       }
       else {
         console.log("Error: Not registered");
+        console.log(error);
       }
     });
-
   });
 });

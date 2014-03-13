@@ -1,5 +1,4 @@
 body {
-  background:url(/img/bg.jpg) center center fixed;
   background-repeat:no-repeat;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
@@ -36,9 +35,11 @@ body {
   background-repeat: no-repeat;
   text-align: center;
 }
+
 .content {
-  min-height: 300px;
+  min-height: 900px;
   height: 100%;
+  background:url(/img/bg.jpg) center center fixed;
 }
 
 .search-module{ 
@@ -148,5 +149,15 @@ body {
          -moz-transform: rotateY( 180deg );
            -o-transform: rotateY( 180deg );
               transform: rotateY( 180deg );
+}
+
+.hero.footer {
+  height: 140px;
+  background-color: #222222;
+  color: #ffffff;
+
+}  
+.foot {
+  margin-top: 30px; 
 }
 

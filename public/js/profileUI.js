@@ -35,9 +35,4 @@ $(document).on('click', "#card", function(e) {
     e.preventDefault();
 });
 
-if ($('#card')[0].scrollHeight >  $('#card').height()) {
-    $( this ).css( "font-size", "10px" );
-}
-
-
 function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}

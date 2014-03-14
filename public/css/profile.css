@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400);
 body {
   background-repeat:no-repeat;
   font-family: 'Roboto', sans-serif;
@@ -24,8 +25,7 @@ body {
   width: 1000px;
 }
 .name {
-  font-family: quickSand;
-  src: url(Quicksand-Regular.woff);
+  font-family: 'Open Sans', sans-serif;
 }
 .profileicon {
   height:auto; 
@@ -89,7 +89,7 @@ body {
   vertical-align:bottom;
   text-align: center;
   width: 250px;
-  height: 200px;
+  height: 150px;
   margin: 10px 10px 10px 10px;
 }
 
@@ -127,16 +127,12 @@ body {
 
 }
 #card figure {
-  font-family: quickSand;
-  src: url(Quicksand-Regular.woff);
+  font-family: 'Open Sans', sans-serif;
   display: block;
   position: absolute;
-  left: 25%;
+  left: 23%;
   width: 130px;
   height: 100px;
-  overflow: hidden;
-  text-align: center;
-  height: 100%;
   -webkit-backface-visibility: hidden;
          -moz-backface-visibility: hidden;
            -o-backface-visibility: hidden;
@@ -145,14 +141,16 @@ body {
   font-size: 25px;
   top: 60%;
   color: #FFF;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 #card .back {
+  font-weight: 300; 
   font-size: 14px;
   left: 27%;
   width: 110px;
   height: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
   -webkit-transform: rotateY( 180deg );
          -moz-transform: rotateY( 180deg );
            -o-transform: rotateY( 180deg );

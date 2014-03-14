@@ -37,28 +37,31 @@ body {
 }
 .content {
   min-height: 300px;
+  width: 100%;
+  text-align: center;
   height: 100%;
 }
 
 .search-module{ 
   overflow: hidden;
   margin: auto;
-  width: 1000px;
+
 }
 
 .searchpanel {
   float: top;
   min-height: 20px;
   margin: 5px;
-
 }
 
 .searchcontent {
   float: bottom;
-  min-height: 300px;
-  max-height: 800px;
+  min-height: 800px;
+  max-height: 100%;
+  max-width: 100%;
   margin: 5px;
   overflow: hidden;
+  z-index: 100;
 }
 
 .clear {
@@ -97,6 +100,7 @@ body {
          -moz-perspective: 800px;
            -o-perspective: 800px;
               perspective: 800px;
+  z-index: 999;
 }
 
 #card {
@@ -113,46 +117,48 @@ body {
               transform-style: preserve-3d;
 }
 #card.flipped {
-  -webkit-transform: rotateY( 180deg );
-         -moz-transform: rotateY( 180deg );
-           -o-transform: rotateY( 180deg );
-              transform: rotateY( 180deg );
+  -webkit-transform: rotateY( 180deg ) scale(3.0);
+         -moz-transform: rotateY( 180deg ) scale(3.0);
+           -o-transform: rotateY( 180deg ) scale(3.0);
+              transform: rotateY( 180deg ) scale(3.0);
 }
 #card figure {
   font-family: quickSand;
   src: url(Quicksand-Regular.woff);
   display: block;
   position: absolute;
+  left: 15%;
   width: 70%;
-  height: 60%;
-  text-align: center;
+  height: 100%;
   -webkit-backface-visibility: hidden;
          -moz-backface-visibility: hidden;
            -o-backface-visibility: hidden;
               backface-visibility: hidden;
   font-size: 25px;
-  position: absolute;
   top: 60%;
-  left: 15%;
   color: #FFF;
 }
 #card .back {
-  font-size: 12px;
-  font-size: 1vw;
-  position: absolute;
-  top: 60%;
-  left: 18%;
+  font-size: 40px;
+  left: 5%;
   text-align: center;
+  width: 220px;
   text-overflow:ellipsis;
-  width: 60%;
   -webkit-transform: rotateY( 180deg );
          -moz-transform: rotateY( 180deg );
            -o-transform: rotateY( 180deg );
               transform: rotateY( 180deg );
+  -webkit-backface-visibility: hidden;
 }
 img#badge {
   max-width: 100%;
   width: 240px;
   height: auto;
+  text-align: center;
+  vertical-align:middle;
+  z-index: 999;
 }
 
+.image-circle {
+
+}

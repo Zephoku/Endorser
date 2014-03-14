@@ -110,7 +110,54 @@ LoginGitHub.prototype.getJSON = function(user, userID){
                 }
             }
 
-            var popularitySubText = json.name + " has " + json.followers + " followers.";
+            var date = new Date();
+            var max_days = 0;
+            $.each(repositories, function(index) {
+                var days = 0;
+                var months = 0;
+                var days_in_month = 0;
+                days += (date.getFullYear()-parseInt((repositories[index].created_at).substring(0,4)))*365;
+                months = (date.getMonth()+1-parseInt((repositories[index].created_at).substring(5,7)));
+                if(months < 0) {
+                    months += 12;
+                    days -= 365;
+                }
+                days += months*30;
+                days_in_month = (date.getDate()-parseInt((repositories[index].created_at).substring(8,10)));
+                if(days_in_month < 0) {
+                    days_in_month += 30;
+                    days-=30;
+                }
+                days += days_in_month;
+                if(days > max_days) {
+                    max_days = days;
+                }
+            });
+
+            var experienceLevel;
+            if(max_days < 30) {
+                experienceLevel = "Novice";
+            } else if(max_days >= 30 && max_days < 180) {
+                experienceLevel = "Intermediate";
+            } else if(max_days >= 180 && max_days < 365) {
+                experienceLevel = "Intermediate Plus";
+            } else if(max_days >= 365 && max_days < 730) {
+                experienceLevel = "Advanced";
+            } else if(max_days >= 730) {
+                experienceLevel = "Expert";
+            }
+
+            if(username == "eggert") {
+                experienceLevel = "Eggert";
+            }
+            var popularitySubText;
+
+            if (json.followers == 1) {
+                popularitySubText = json.name + " has " + json.followers + " follower."
+            }
+            else {
+                popularitySubText = json.name + " has " + json.followers + " followers.";
+            }
             var popularityAchievements = {'name': 'GitHub Popularity', 'subtext': popularitySubText, 'image': "", 'priority': 0, 'source': 'github'};
             pushToFirebase(popularityAchievements, userID, 1);
 
@@ -121,6 +168,10 @@ LoginGitHub.prototype.getJSON = function(user, userID){
             var bestLangSubText = json.name + "'s best language is " + bestLanguage +".";
             var languageAchievements = {'name': 'Best Language', 'subtext': bestLangSubText, 'image': "", 'priority': 0, 'source': 'github'};
             pushToFirebase(languageAchievements, userID, 3);
+
+            var daysProgrammedSubText = json.name + " has programmed for at least " + max_days + " days.";
+            var daysAchievements = {'name': 'Experience Level: '+experienceLevel, 'subtext': daysProgrammedSubText, 'image': "", 'priority': 0, 'source': 'github'};
+            pushToFirebase(daysAchievements, userID, 4);
           }
         } // end outputPageContent()
       } // end else statement

@@ -15,12 +15,13 @@ body {
 }
 
 .namebar {
-  background-color:rgba(0,0,0,0.2);
+  background-color: rgba(22,22,22,0.8);
   margin: auto;
   height: 165px;
   width: 100%;
 }
 .namebar-container {
+  margin: auto;
   padding: 30px;
   width: 1000px;
 }
@@ -82,6 +83,7 @@ body {
 .achievementlist {
   list-style-type: none;
   padding-bottom: 100px;
+  
 }
 
 .achievement {
@@ -171,6 +173,8 @@ img#badge {
 }
 
 .hero.footer {
+  -webkit-box-shadow: 0 -3px 10px 3px rgba(22,22,22,0.6);
+  box-shadow: 0 -3px 10px 3px rgba(22,22,22,0.6);
   height: 140px;
   background-color: #222222;
   color: #ffffff;

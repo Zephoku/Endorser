@@ -20,15 +20,11 @@ block content
         div.navbar-header
           a.navbar-brand(href="/") Endorser
         ul.nav.navbar-nav.navbar-right
-          li
-            a(href="register") Register
-          li 
-            a(href="login") Login
           li 
             a#logout(href="logout") Logout
     div.app(ng-app='search-module', ng-controller='searchCTRL')
       div.namebar
-        div.namebar.namebar-container
+        div.namebar-container
           img.profileicon(class="img-circle", src='{{userStats.profile_pic}}')
           span.name {{userStats.first_name}} {{userStats.last_name}}
           div.connectbuttons

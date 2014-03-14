@@ -150,8 +150,14 @@ LoginGitHub.prototype.getJSON = function(user, userID){
             if(username == "eggert") {
                 experienceLevel = "Eggert";
             }
+            var popularitySubText;
 
-            var popularitySubText = json.name + " has " + json.followers + " followers.";
+            if (json.followers == 1) {
+                popularitySubText = json.name + " has " + json.followers + " follower."
+            }
+            else {
+                popularitySubText = json.name + " has " + json.followers + " followers.";
+            }
             var popularityAchievements = {'name': 'GitHub Popularity', 'subtext': popularitySubText, 'image': "", 'priority': 0, 'source': 'github'};
             pushToFirebase(popularityAchievements, userID, 1);
 

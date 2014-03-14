@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,300);
+
 body {
   background-repeat:no-repeat;
   font-family: 'Roboto', sans-serif;
@@ -14,18 +16,19 @@ body {
 }
 
 .namebar {
-  background-color:rgba(0,0,0,0.2);
+  background-color: rgba(22,22,22,0.8);
   margin: auto;
   height: 165px;
   width: 100%;
 }
 .namebar-container {
+  margin: auto;
   padding: 30px;
   width: 1000px;
 }
 .name {
-  font-family: quickSand;
-  src: url(Quicksand-Regular.woff);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
 }
 .profileicon {
   height:auto; 
@@ -81,6 +84,8 @@ body {
 .achievementlist {
   list-style-type: none;
   padding-bottom: 100px;
+  background-color: red;
+  
 }
 
 .achievement {
@@ -89,7 +94,8 @@ body {
   text-align: center;
   width: 250px;
   height: 200px;
-  margin: 10px 10px 10px 10px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .containerB {
@@ -152,6 +158,8 @@ body {
 }
 
 .hero.footer {
+  -webkit-box-shadow: 0 -3px 10px 3px rgba(22,22,22,0.6);
+  box-shadow: 0 -3px 10px 3px rgba(22,22,22,0.6);
   height: 140px;
   background-color: #222222;
   color: #ffffff;

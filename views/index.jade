@@ -7,6 +7,7 @@ block scripts
   script(src="http://durated.github.io/angular-scroll/0.2.2/angular-scroll.min.js")
   script(src="http://durated.github.io/angular-parallax/angular-parallax.min.js")
   script(src="/js/parallax.js")
+  script(src='/js/endorser.js')
 
 block content
   nav.navbar.navbar-default
@@ -15,17 +16,18 @@ block content
         a.navbar-brand(href="#") Endorser
       ul.nav.navbar-nav.navbar-right
         li
-          a(href="register") Register
+          a#register(href="register") Register
         li 
-          a(href="login") Login
+          a#login(href="login") Login
         li 
           a#logout(href="logout") Logout
   .hero.herobar
     .container
-      .title
-        h1 Endorser
-      .subtitle
-        h2 Bringing truth to your professional experience
+      .text
+        .title
+          h1 Endorser
+        .subtitle
+          h2 Bringing truth to your professional experience
   .hero.features
     .container
       .col.col-md-4
@@ -35,7 +37,7 @@ block content
           | Show your recruiters a custom profile page showing your crowning achievements!
       .col.col-md-4
         span.feature-title Custom Badges
-        img(src="img/github.png")
+        img.icon(src='/img/badge.png', width='240')
         p
           | Generate custom badges based off of courses you took, code you wrote, or progress you've made from many other websites
       .col.col-md-4
@@ -48,7 +50,7 @@ block content
   .hero
     .container
       h3 Compatible Websites
-      .row
+      .websites.row
         img.logo.col-md-2(src='img/codeschool.png')
         img.logo.col-md-2(src='img/fedora.png')
         img.logo.col-md-2(src='img/github.png')

@@ -60,9 +60,9 @@ body {
   opacity: 0.7; }
 
 .logo:hover {
-  -webkit-animation: fadeIn 0.2s ease-in-out 1 forwards;
-  -moz-animation: fadeIn 0.2s ease-in-out 1 forwards;
-  animation: fadeIn 0.2s ease-in-out 1 forwards; }
+  -webkit-animation: fadeIn 0.3s ease-in-out 1 forwards;
+  -moz-animation: fadeIn 0.3s ease-in-out 1 forwards;
+  animation: fadeIn 0.3s ease-in-out 1 forwards; }
 
 .container .col {
   text-align: center; }
@@ -94,3 +94,16 @@ body {
   .hero.features img {
     width: 300px;
     margin: 10px; }
+
+.hidden {
+  display: hidden; }
+
+.websites {
+  margin: auto; }
+
+.text {
+  float: left; }
+
+.image {
+  margin-top: 25px;
+  float: right; }

@@ -56,7 +56,7 @@ body {
 }
 
 .logo:hover {
-  @include animation(fadeIn 0.2s ease-in-out 1 forwards);
+  @include animation(fadeIn 0.3s ease-in-out 1 forwards);
 }
 
 .container {
@@ -101,3 +101,21 @@ body {
     margin: 10px;
   }
 }
+
+.hidden {
+  display: hidden;
+}
+
+.websites {
+  margin: auto;
+}
+
+.text {
+  float: left;
+}
+
+.image {
+  margin-top: 25px;
+  float: right;
+}
+

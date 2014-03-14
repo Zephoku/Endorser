@@ -23,22 +23,19 @@ function LoginGitHub(baseURL, githubUserID, newContext){
         self._onLoginStateChange(error, gitHubUser);
     });
 
-    this.login = function(provider){
+    this.login = function(provider) {
         this._firebaseAuthClient.login(provider, {
         rememberMe: false,
         scope: 'user,public_repo'   
         });
     };
+
+    this.logout = function(provider) {
+        this._firebaseAuthClient.logout();
+        console.log("github account logged out");
+    }
 }
 LoginGitHub.prototype = {
-    _validateCallback: function(cb, notInit) {
-        if (!cb || typeof cb != "function") {
-            throw new Error("Invalid onComplete callback provided");
-        }
-        else {
-            //logged out
-        }
-    },
     _onLoginStateChange: function(error, githubUser) {
         var self = this;
         if (error) {
@@ -47,7 +44,6 @@ LoginGitHub.prototype = {
         //   alert("Hello " + user.login +"!");
             self.getJSON(githubUser, this._userID);
             console.log('GitHub user ID: ' + githubUser.id);
-            self._firebaseAuthClient.logout();
         } else {
             //logout
         }

@@ -1,7 +1,7 @@
 body {
-  background:url(/img/bg.jpg);
-  background-size: 100%;
   background-repeat:no-repeat;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 .navbar {
@@ -35,11 +35,11 @@ body {
   background-repeat: no-repeat;
   text-align: center;
 }
+
 .content {
-  min-height: 300px;
-  width: 100%;
-  text-align: center;
+  min-height: 900px;
   height: 100%;
+  background:url(/img/bg.jpg) center center fixed;
 }
 
 .search-module{ 
@@ -81,6 +81,7 @@ body {
 
 .achievementlist {
   list-style-type: none;
+  padding-bottom: 100px;
 }
 
 .achievement {
@@ -99,7 +100,8 @@ body {
   -webkit-perspective: 800px;
          -moz-perspective: 800px;
            -o-perspective: 800px;
-              perspective: 800px;
+            perspective: 800px;
+
   z-index: 999;
 }
 
@@ -114,41 +116,52 @@ body {
       -webkit-transform-style: preserve-3d;
          -moz-transform-style: preserve-3d;
            -o-transform-style: preserve-3d;
-              transform-style: preserve-3d;
+           transform-style: preserve-3d;
+
 }
 #card.flipped {
-  -webkit-transform: rotateY( 180deg ) scale(3.0);
-         -moz-transform: rotateY( 180deg ) scale(3.0);
-           -o-transform: rotateY( 180deg ) scale(3.0);
-              transform: rotateY( 180deg ) scale(3.0);
+  -webkit-transform: rotateY( 180deg );
+         -moz-transform: rotateY( 180deg );
+           -o-transform: rotateY( 180deg );
+           transform: rotateY( 180deg );
+
 }
 #card figure {
   font-family: quickSand;
   src: url(Quicksand-Regular.woff);
   display: block;
   position: absolute;
-  left: 15%;
-  width: 70%;
+  left: 25%;
+  width: 130px;
+  height: 100px;
+  overflow: hidden;
+  text-align: center;
   height: 100%;
   -webkit-backface-visibility: hidden;
          -moz-backface-visibility: hidden;
            -o-backface-visibility: hidden;
-              backface-visibility: hidden;
+           backface-visibility: hidden;
+
   font-size: 25px;
   top: 60%;
   color: #FFF;
 }
 #card .back {
-  font-size: 40px;
-  left: 5%;
-  text-align: center;
-  width: 220px;
-  text-overflow:ellipsis;
+  font-size: 14px;
+  left: 27%;
+  width: 110px;
+  height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   -webkit-transform: rotateY( 180deg );
          -moz-transform: rotateY( 180deg );
            -o-transform: rotateY( 180deg );
-              transform: rotateY( 180deg );
+           transform: rotateY( 180deg );
   -webkit-backface-visibility: hidden;
+         -mox-transform-backface-visibility: hidden;
+           -o-transform-backface-visibility: hidden;
+            transform-backface-visibility: hidden;
+
 }
 img#badge {
   max-width: 100%;
@@ -159,6 +172,12 @@ img#badge {
   z-index: 999;
 }
 
-.image-circle {
+.hero.footer {
+  height: 140px;
+  background-color: #222222;
+  color: #ffffff;
 
+}  
+.foot {
+  margin-top: 30px; 
 }

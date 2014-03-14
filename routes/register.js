@@ -5,3 +5,7 @@ exports.create = function(req, res){
 exports.login = function(req, res){
   res.render('login', { title: 'Endorser' });
 };
+
+exports.logout = function(req, res){
+  res.render('logout', { title: 'Endorser' });
+};

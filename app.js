@@ -47,6 +47,7 @@ app.get('/profile', routes.profile);
 app.get('/fire', fireRoute.page);
 app.get('/register', register.create);
 app.get('/login', register.login);
+app.get('/logout', register.logout);
 app.get('/displayer', displayer.convert);
 
 http.createServer(app).listen(app.get('port'), function(){

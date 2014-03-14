@@ -1,0 +1,64 @@
+extends layout
+
+block links
+  link(rel='stylesheet', href='/css/index.css')
+
+block scripts
+  script(src="http://durated.github.io/angular-scroll/0.2.2/angular-scroll.min.js")
+  script(src="http://durated.github.io/angular-parallax/angular-parallax.min.js")
+  script(src="/js/parallax.js")
+
+block content
+  nav.navbar.navbar-default
+    div.container
+      div.navbar-header
+        a.navbar-brand(href="#") Endorser
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href="register") Register
+        li 
+          a(href="login") Login
+        li 
+          a#logout(href="logout") Logout
+  .hero.herobar
+    .container
+      .title
+        h1 Endorser
+      .subtitle
+        h2 Bringing truth to your professional experience
+  .hero.features
+    .container
+      .col.col-md-4
+        span.feature-title Profile Page
+        img(src="img/github.png")
+        p 
+          | Show your recruiters a custom profile page showing your crowning achievements!
+      .col.col-md-4
+        span.feature-title Custom Badges
+        img(src="img/github.png")
+        p
+          | Generate custom badges based off of courses you took, code you wrote, or progress you've made from many other websites
+      .col.col-md-4
+        span.feature-title Many Websites
+        img(src="img/github.png")
+        p 
+          | Compatible with many different websites.  If a website you would like to integrate with is not available, please contact us for recommendations
+  .hero.parallax(ng-app='paraApp', ng-controller='paraCtrl')
+    img(src='img/fountain.jpg', du-parallax y="background")
+  .hero
+    .container
+      h3 Compatible Websites
+      .row
+        img.logo.col-md-2(src='img/codeschool.png')
+        img.logo.col-md-2(src='img/fedora.png')
+        img.logo.col-md-2(src='img/github.png')
+        img.logo.col-md-2(src='img/badgesforlanguages.png')
+        img.logo.col-md-2(src='img/moodle.png')
+
+  .hero.footer
+    .container
+      .foot
+        span All Rights Reserved
+        br
+        span By Robert Nguyen, Ryan Chan, Sean Grant, Jared Brown,  Vishal Yadav
+

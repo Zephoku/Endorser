@@ -2,14 +2,16 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/css/reset.css')
+    link(rel='stylesheet', href='/css/normalize.css')
     link(rel='stylesheet', href='/css/bootstrap.css')
     block links
     script(src='/js/jquery.js')
     script(src='/js/angular.js')
+    script(src='js/bootstrap.js')
     script(src='https://cdn.firebase.com/v0/firebase.js')
     script(src='https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js')
     script(src='https://cdn.firebase.com/js/simple-login/1.2.3/firebase-simple-login.js')
     block scripts
   body
+    include header
     block content

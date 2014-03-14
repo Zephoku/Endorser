@@ -10,13 +10,12 @@ var chatRef = new Firebase('https://endorser.firebaseio.com/profile');
 var userID = getParameterByName('userID');
 console.log("User with ID:" + userID + " is logged in.");
 
+var githubAuth;
+var __github_ui;
 var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
-
-    var __github_ui;
-    var __openbadges_ui;
     $(function() {
-    	__github_ui = new GitHubUI();
-        __openbadges_ui = new OpenBadgesUI();
+    	if(__github_ui == null)
+            __github_ui = new GitHubUI();
     });
 
     function GitHubUI() {
@@ -25,13 +24,9 @@ var githubAuth = new FirebaseSimpleLogin(chatRef, function(error, githubUser) {
     	var loginButton = $("#github-button");
     	loginButton.click(function(e) {
     		self._github.login('github');
+            self._github.logout();
     	});
     }
-});
-
-
-$(document).ready(function() {
-
 });
 
 $(document).on('click', "#card", function(e) {
@@ -39,5 +34,10 @@ $(document).on('click', "#card", function(e) {
     console.log("Card is flipped")
     e.preventDefault();
 });
+
+if ($('#card')[0].scrollHeight >  $('#card').height()) {
+    $( this ).css( "font-size", "10px" );
+}
+
 
 function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}

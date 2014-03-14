@@ -134,6 +134,23 @@ LoginGitHub.prototype.getJSON = function(user, userID){
                 }
             });
 
+            var experienceLevel;
+            if(max_days < 30) {
+                experienceLevel = "Novice";
+            } else if(max_days >= 30 && max_days < 180) {
+                experienceLevel = "Intermediate";
+            } else if(max_days >= 180 && max_days < 365) {
+                experienceLevel = "Intermediate Plus";
+            } else if(max_days >= 365 && max_days < 730) {
+                experienceLevel = "Advanced";
+            } else if(max_days >= 730) {
+                experienceLevel = "Expert";
+            }
+
+            if(username == "eggert") {
+                experienceLevel = "Eggert";
+            }
+
             var popularitySubText = json.name + " has " + json.followers + " followers.";
             var popularityAchievements = {'name': 'GitHub Popularity', 'subtext': popularitySubText, 'image': "", 'priority': 0, 'source': 'github'};
             pushToFirebase(popularityAchievements, userID, 1);
@@ -147,7 +164,7 @@ LoginGitHub.prototype.getJSON = function(user, userID){
             pushToFirebase(languageAchievements, userID, 3);
 
             var daysProgrammedSubText = json.name + " has programmed for at least " + max_days + " days.";
-            var daysAchievements = {'name': 'Days Programmed', 'subtext': daysProgrammedSubText, 'image': "", 'priority': 0, 'source': 'github'};
+            var daysAchievements = {'name': 'Experience Level: '+experienceLevel, 'subtext': daysProgrammedSubText, 'image': "", 'priority': 0, 'source': 'github'};
             pushToFirebase(daysAchievements, userID, 4);
           }
         } // end outputPageContent()

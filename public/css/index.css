@@ -92,6 +92,7 @@ body {
     padding: 10px;
     font-size: 16px; }
   .hero.features img {
+    max-height: 300px;
     width: 300px;
     margin: 10px; }
 
